@@ -41,3 +41,22 @@ a:hover { background-color:#ff3300}
     li {
     display:inline;
     }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        text-align: center;
+    }
+    .sort-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 5px;
+    }

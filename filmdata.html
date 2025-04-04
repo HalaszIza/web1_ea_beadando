@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Adatbázis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="about.html">Rólunk</a></li>
+            <li><a href="filmdata.html" class="active">Filmek</a></li>
+            <li><a href="contact.html">Kapcsolat</a></li>
+        </ul>
+    </nav>
+    <h2>Film Adatbázis</h2>
+    <input type="text" id="searchInput" placeholder="Keresés..." onkeyup="searchTable()">
+
+    <table id="filmTable">
+        <thead>
+            <tr>
+                <th>Cím <button class="sort-button" onclick="sortTable(0)">⬆⬇</button></th>
+                <th>Év <button class="sort-button" onclick="sortTable(1)">⬆⬇</button></th>
+                <th>Műfaj <button class="sort-button" onclick="sortTable(2)">⬆⬇</button></th>
+                <th>Értékelés <button class="sort-button" onclick="sortTable(3)">⬆⬇</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Inception</td><td>2010</td><td>Sci-fi</td><td>8.8</td></tr>
+            <tr><td>Interstellar</td><td>2014</td><td>Sci-fi</td><td>8.6</td></tr>
+            <tr><td>Shutter Island</td><td>2010</td><td>Thriller</td><td>8.2</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function searchTable() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let table = document.getElementById("filmTable");
+            let rows = table.getElementsByTagName("tr");
+            
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerHTML.toLowerCase().includes(input)) {
+                        match = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+        let sortDirections = [true, true, true, true];
+
+        function sortTable(columnIndex) {
+            let table = document.getElementById("filmTable");
+            let rows = Array.from(table.rows).slice(1);
+            let ascending = sortDirections[columnIndex];
+
+            let sortedRows = rows.sort((a, b) => {
+                let valA = a.cells[columnIndex].innerHTML;
+                let valB = b.cells[columnIndex].innerHTML;
+                
+                if (!isNaN(valA) && !isNaN(valB)) {
+                    return ascending ? valA - valB : valB - valA;
+                } else {
+                    return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                }
+            });
+
+            sortedRows.forEach(row => table.appendChild(row));
+            sortDirections[columnIndex] = !ascending;
+        }
+    </script>
+    <footer>Papp Zoltán E5IZMS</footer>
+    <footer>Halász Izabella Mária D97E6X</footer>
+</body>
+</html>
