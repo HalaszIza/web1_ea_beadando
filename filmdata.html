@@ -19,6 +19,13 @@
         </ul>
     </nav>
     <h2>Film Adatbázis</h2>
+    <form id="filmForm">
+        <input type="text" id="title" placeholder="Film címe" required minlength="2">
+        <input type="number" id="year" placeholder="Év" required min="1900" max="2025">
+        <input type="text" id="genre" placeholder="Műfaj" required minlength="3">
+        <input type="number" id="rating" placeholder="Értékelés (0-10)" required min="0" max="10" step="0.1">
+        <button type="submit">Hozzáadás</button>
+    </form>
     <input type="text" id="searchInput" placeholder="Keresés..." onkeyup="searchTable()">
 
     <table id="filmTable">
@@ -31,53 +38,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td>Inception</td><td>2010</td><td>Sci-fi</td><td>8.8</td></tr>
-            <tr><td>Interstellar</td><td>2014</td><td>Sci-fi</td><td>8.6</td></tr>
-            <tr><td>Shutter Island</td><td>2010</td><td>Thriller</td><td>8.2</td></tr>
         </tbody>
     </table>
-
-    <script>
-        function searchTable() {
-            let input = document.getElementById("searchInput").value.toLowerCase();
-            let table = document.getElementById("filmTable");
-            let rows = table.getElementsByTagName("tr");
-            
-            for (let i = 1; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName("td");
-                let match = false;
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j].innerHTML.toLowerCase().includes(input)) {
-                        match = true;
-                        break;
-                    }
-                }
-                rows[i].style.display = match ? "" : "none";
-            }
-        }
-        let sortDirections = [true, true, true, true];
-
-        function sortTable(columnIndex) {
-            let table = document.getElementById("filmTable");
-            let rows = Array.from(table.rows).slice(1);
-            let ascending = sortDirections[columnIndex];
-
-            let sortedRows = rows.sort((a, b) => {
-                let valA = a.cells[columnIndex].innerHTML;
-                let valB = b.cells[columnIndex].innerHTML;
-                
-                if (!isNaN(valA) && !isNaN(valB)) {
-                    return ascending ? valA - valB : valB - valA;
-                } else {
-                    return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
-                }
-            });
-
-            sortedRows.forEach(row => table.appendChild(row));
-            sortDirections[columnIndex] = !ascending;
-        }
-    </script>
     <footer>Papp Zoltán E5IZMS</footer>
     <footer>Halász Izabella Mária D97E6X</footer>
+    <script src="filmdata.js"></script>
 </body>
 </html>
