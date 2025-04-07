@@ -1,62 +1,110 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: lightgray;
+}
+
 header, footer {
-    padding: 0.5em;
+    padding: 5px;
     color: white;
-    background-color: gray;
-    }
+    background-color: rgb(4, 4, 65);
+}
+
+footer {
+    padding: 10px;
+}
+
 h1.header {
-    padding: 0;
-    margin: 0;
-    }
+    padding: 10px;
+    margin: 20px;
+}
+
 aside {
     float: left;
     width: 160px;
     margin: 0;
     padding: 1em;
-    }
+}
+
 section {
     margin-left: 190px;
     border-left: 1px solid gray;
     padding: 1em;
-    }
+}
+
 ul {
     float:left;
     width:100%;
     padding:0;
     margin:0;
     list-style-type:none;
-    }
+}
+
 a {
     float:left;
-    width:6em;
-    text-decoration:none;
+    width:150px;
+    text-decoration:underline;
     color:white;
-    background-color:rgb(53, 128, 0);
-    padding:0.2em 0.6em;
-    border-right:1px solid white;
-    }
+    background-color:rgb(12, 115, 146);
+    padding: 10px;
+    border-right:2px solid white;
+}
+
 a.active{
     border-bottom:5px solid rgb(76, 76, 79);
-    }
-a:hover { background-color:#ff3300}
-    li {
+}
+
+a:hover { 
+    
+    background-color:rgb(144, 192, 207);
+    color: black;
+
+}
+
+li {
     display:inline;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        text-align: center;
-    }
-    .sort-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-        margin-left: 5px;
-    }
+}
+
+.keszito {
+    font-style: italic;
+    font-weight: bolder;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    text-align: center;
+}
+
+.sort-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.poster {
+    height: 700px;
+    margin: 10px;
+    border: solid 2px darkgray;
+}
+
+.village {
+    height: 200px;
+    float: right;
+    
+}
+
+.future {
+    height: 310px;
+}
+
