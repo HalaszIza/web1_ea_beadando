@@ -1,0 +1,67 @@
+body {
+
+  background: rgb(169, 198, 209); 
+  color: black; 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 50px; 
+  margin: 50px; 
+  color: rgb(18, 35, 70); 
+
+  
+}
+
+
+button {
+  margin-left: 100px;
+  margin-right: 30px;
+  padding: 20px; 
+  font-size: 20px; 
+  background-color: lightskyblue; 
+  color: black; 
+  border: solid 2px black;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: rgb(9, 38, 77); 
+  cursor: pointer;
+  border: solid 2px whitesmoke ;
+  color: whitesmoke;
+}
+
+.content {
+  color: black; 
+  font-size: 20px; 
+  font-weight: bolder; 
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.Jatekos {
+  color: rgb(93, 139, 141);
+  
+}
+
+.Gep {
+  color: rgb(93, 141, 113);
+  
+}
+
+footer {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: darkblue;
+  
+}
+
+
