@@ -1,7 +1,10 @@
 let films = [
-    { title: "Inception", year: 2010, genre: "Sci-fi", rating: 8.8 },
-    { title: "Interstellar", year: 2014, genre: "Sci-fi", rating: 8.6 },
-    { title: "Shutter Island", year: 2010, genre: "Thriller", rating: 8.2 }
+    { title: "Inception", year: 2010, genre: "Sci-fi, Akció", rating: 8.8 },
+    { title: "Interstellar", year: 2014, genre: "Sci-fi, Kaland", rating: 8.6 },
+    { title: "Shutter Island", year: 2010, genre: "Thriller", rating: 8.2 },
+    { title: "Tenet", year: 2020, genre: "Sci-fi, Akció", rating: 7.3},
+    { title: "The Silence Of The Lambs", year: 1991, genre: "Horror, Krimi", rating: 8.5},
+    { title: "Zodiac", year: 2007, genre: "Thriller, Krimi", rating: 7.7}
 ];
 
 document.getElementById("filmForm").addEventListener("submit", function(event) {
