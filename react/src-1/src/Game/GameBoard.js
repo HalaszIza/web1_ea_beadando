@@ -28,7 +28,7 @@ function GameBoard() {
 			setFirstCard(item); 
 		} 
 	} 
-
+ 
 	React.useEffect(() => { 
 		if (firstCard && secondCard) { 
 			setStopFlip(true); 
@@ -68,7 +68,7 @@ function GameBoard() {
 			<div className="header"> 
 				<h1>Movie Memory Game</h1>				
 			</div>
-
+			
 			<div className="board">
 				
 				{ 
@@ -92,7 +92,7 @@ function GameBoard() {
 				<div className="comments">Moves : {moves}</div> 
 			) : ( 
 				<div className="comments"> 
-					???????? You Won in {moves} moves ???????? 
+					~~~~~~~~~ You Won in {moves} moves ~~~~~~~~~
 				</div> 
 			)} 
 			<button className="button" onClick={NewGame}> 
