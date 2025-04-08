@@ -108,3 +108,13 @@ th {
     height: 310px;
 }
 
+canvas {
+    max-width: 400px;
+    max-height: 250px;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
