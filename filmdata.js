@@ -7,6 +7,8 @@ let films = [
     { title: "Zodiac", year: 2007, genre: "Thriller, Krimi", rating: 7.7}
 ];
 
+var success = false;
+
 document.getElementById("filmForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -15,14 +17,20 @@ document.getElementById("filmForm").addEventListener("submit", function(event) {
     let genre = document.getElementById("genre").value.trim();
     let rating = document.getElementById("rating").value;
 
+    document.getElementById("title").value = "";
+    document.getElementById("year").value = "";
+    document.getElementById("genre").value = "";
+    document.getElementById("rating").value = "";
+
     if (title.length < 2 || genre.length < 3 || rating < 0 || rating > 10 || year < 1900 || year > 2025) {
         alert("Hibás adatok! Kérlek ellenőrizd a mezőket.");
         return;
+    } else{
+        success = true;
     }
 
     let film = { title, year, genre, rating };
-    films.push(film);
-    updateTable();
+    addFilm(film);
 });
 
 function updateTable() {
@@ -99,4 +107,18 @@ function sortTable(columnIndex) {
 
     sortedRows.forEach(row => table.appendChild(row));
     sortDirections[columnIndex] = !ascending;
+}
+
+function addFilm(newFilm) {
+    films.push(newFilm);
+    updateTable();
+
+    if (sessionStorage.clickCount) {
+        sessionStorage.clickCount = Number(sessionStorage.clickCount) + 1;
+    } else {
+        sessionStorage.clickCount = 1;
+    }
+
+    document.getElementById("clickCounter").innerText =
+        "Hozzáadott filmek száma: " + sessionStorage.clickCount;
 }
