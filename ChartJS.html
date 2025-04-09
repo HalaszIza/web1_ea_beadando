@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmek Bevételi Trendje</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="about.html">Rólunk</a></li>
+            <li><a href="filmdata.html">Filmek</a></li>
+            <li><a href="ChartJS.html" class="active">Film bevételek</a></li>
+            <li><a href="OOJS.html">Objektumorientált Film Adatbázis</a></li>
+            <li><a href="HTML5.html">HTML5</a></li>
+            <li><a href="contact.html">Kapcsolat</a></li>
+        </ul>
+    </nav>
+    <h2>Filmek Bevételi Adatai</h2>
+    <table id="filmTable">
+        <thead>
+            <tr>
+                <th>Film</th>
+                <th>Bevétel 1. év (millió $)</th>
+                <th>Bevétel 2. év</th>
+                <th>Bevétel 3. év</th>
+                <th>Bevétel 4. év</th>
+                <th>Bevétel 5. év</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr onclick="updateChart('Interstellar', [200, 350, 500, 650, 701])">
+                <td>Interstellar</td><td>200</td><td>350</td><td>500</td><td>650</td><td>701</td>
+            </tr>
+            <tr onclick="updateChart('Inception', [300, 500, 700, 800, 837])">
+                <td>Inception</td><td>300</td><td>500</td><td>700</td><td>800</td><td>837</td>
+            </tr>
+            <tr onclick="updateChart('Shutter Island', [100, 180, 220, 260, 294])">
+                <td>Shutter Island</td><td>100</td><td>180</td><td>220</td><td>260</td><td>294</td>
+            </tr>
+            <tr onclick="updateChart('Tenet', [150, 250, 300, 330, 365])">
+                <td>Tenet</td><td>150</td><td>250</td><td>300</td><td>330</td><td>365</td>
+            </tr>
+            <tr onclick="updateChart('Silence of the Lambs', [50, 100, 150, 200, 272])">
+                <td>Silence of the Lambs</td><td>50</td><td>100</td><td>150</td><td>200</td><td>272</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Bevételi Trend</h2>
+    <canvas id="chart"></canvas>
+
+    <script>
+        var ctx = document.getElementById('chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["1. év", "2. év", "3. év", "4. év", "5. év"],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        function updateChart(film, values) {
+            myChart.data.datasets = [{
+                label: film + ' bevétele',
+                data: values,
+                borderColor: 'blue',
+                fill: false
+            }];
+            myChart.update();
+        }
+    </script>
+    <p>(Az adatok helyessége nem igazolt. Az adatok felhsználása engedélyköteles. Bármely hasonlóság élő vagy holt személlyel, pusztán a véletlen műve. Megértést köszönjük.)</p>
+    <footer>Papp Zoltán E5IZMS</footer>
+    <footer>Halász Izabella Mária D97E6X</footer>
+</body>
+</html>

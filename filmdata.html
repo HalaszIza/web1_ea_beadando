@@ -15,6 +15,9 @@
             <li><a href="index.html">Főoldal</a></li>
             <li><a href="about.html">Rólunk</a></li>
             <li><a href="filmdata.html" class="active">Filmek</a></li>
+            <li><a href="ChartJS.html">Film bevételek</a></li>
+            <li><a href="OOJS.html">Objektumorientált Film Adatbázis</a></li>
+            <li><a href="HTML5.html">HTML5</a></li>
             <li><a href="contact.html">Kapcsolat</a></li>
         </ul>
     </nav>
@@ -26,6 +29,8 @@
         <input type="number" id="rating" placeholder="Értékelés (0-10)" required min="0" max="10" step="0.1">
         <button type="submit">Hozzáadás</button>
     </form>
+    <p id="clickCounter">Hozzáadott filmek száma: 0</p>
+
     <input type="text" id="searchInput" placeholder="Keresés..." onkeyup="searchTable()">
 
     <table id="filmTable">

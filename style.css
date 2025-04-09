@@ -108,3 +108,33 @@ th {
     height: 310px;
 }
 
+canvas {
+    max-width: 400px;
+    max-height: 250px;
+}
+
+
+tr:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.film-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+
+#dragBox {
+    width: 100px; height: 100px;
+    background-color: lightblue;
+    text-align: center; line-height: 100px;
+    position: absolute;
+}
+#dropZone {
+    width: 200px; height: 200px;
+    background-color: lightgray;
+    text-align: center; line-height: 200px;
+    margin-top: 20px;
+}
