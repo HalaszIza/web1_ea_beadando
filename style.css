@@ -113,6 +113,7 @@ canvas {
     max-height: 250px;
 }
 
+
 tr:hover {
     background-color: #f0f0f0;
     cursor: pointer;
@@ -125,3 +126,15 @@ tr:hover {
     background-color: #f9f9f9;
 }
 
+#dragBox {
+    width: 100px; height: 100px;
+    background-color: lightblue;
+    text-align: center; line-height: 100px;
+    position: absolute;
+}
+#dropZone {
+    width: 200px; height: 200px;
+    background-color: lightgray;
+    text-align: center; line-height: 200px;
+    margin-top: 20px;
+}
