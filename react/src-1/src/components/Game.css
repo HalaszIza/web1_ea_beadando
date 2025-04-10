@@ -14,49 +14,32 @@
 	display: flex; 
 	flex-direction: row; 
 	padding: 10px; 
-	display: flex; 
 	justify-content: center; 
 	align-items: centre; 
 }
 
-
 h1 { 
 	align-self: start; 
-	font-size: 2.5rem; 
+	font-size: 50px; 
 	color: rgb(247, 247, 247); 
   	font-style: italic;
 }
 
-.navbar .btn-outline-success {
-	margin-right: 1000px;
-	margin-top: 20px;	
-	font-size: large;
-	font-weight: bolder;
-	color: black;
-	border: 2px solid white;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.navbar .btn-outline-success:hover {
-	background-color: darkblue;
-	color: whitesmoke;
-}
-
-.button { 
+button { 
 	display: flex; 
 	align-items: center; 
 	justify-content: center; 
-	padding: 0.5rem 0.8rem; 
+	padding: 10px; 
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 	width: 200px; 
-	font-size: 1.2rem; 
+	font-size: 20px; 
 	font-weight: bolder; 
-	border-radius: 0.7rem; 
+	border-radius: 10px; 
 	border-style: none; 
 	background-color: darkblue; 
 	color: white; 
 	margin-top: 4px; 
-	margin-left: 55%; 
+	margin-left: 1000px; 
 } 
 
 .button:hover { 
@@ -67,31 +50,31 @@ h1 {
 .board { 
 	display: grid; 
 	margin: auto; 
-	margin-top: 3rem; 
-	grid-template-columns: repeat(4, 15rem); 
+	margin-top: 50px; 
+	grid-template-columns: repeat(4, 300px); 
 	place-items: center; 
-	row-gap: 5rem; 
+	row-gap: 100px; 
 } 
 
 .comments { 
-	padding: 0.25rem 1rem; 
+	padding: 10px; 
 	background-color: lightblue; 
 	margin: auto; 
 	margin-top: 40px; 
 	text-align: center; 
-	border-radius: 2rem; 
+	border-radius: 50px; 
+	border: solid 2px darkblue;
 } 
 
 .face { 
-	height: 6rem; 
+	height: 130px; 
 } 
 
 .back { 
-	height: 6rem; 
-	width: 6rem; 
+	height: 130px; 
+	width: 130px; 
 	background-color: rgb(0, 34, 66);
 	border: 1px solid whitesmoke; 
-	border-radius: 50%; 
 } 
 
 .item .face { 
