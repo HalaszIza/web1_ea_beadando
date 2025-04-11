@@ -22,162 +22,168 @@
             <li><a href="contact.html">Kapcsolat</a></li>
         </ul>
     </nav>
-
-    <h2>Web Worker</h2>
-    <progress id="progressBar" value="0" max="100"></progress>
-    <button onclick="startWorker()">Worker indítása</button>
-    
-    <script>
-        let worker;
-        function startWorker() {
-            worker = new Worker(URL.createObjectURL(new Blob([`
-                let progress = 0;
-                function doWork() {
-                    progress += 10;
-                    postMessage(progress);
-                    if (progress < 100) {
-                        setTimeout(doWork, 500);
+    <aside>
+        <h1>HTML5</h1>
+    </aside>
+    <section>
+        <h2>Web Worker</h2>
+        <progress id="progressBar" value="0" max="100"></progress>
+        <button onclick="startWorker()">Worker indítása</button>
+        
+        <script>
+            let worker;
+            function startWorker() {
+                worker = new Worker(URL.createObjectURL(new Blob([`
+                    let progress = 0;
+                    function doWork() {
+                        progress += 10;
+                        postMessage(progress);
+                        if (progress < 100) {
+                            setTimeout(doWork, 500);
+                        }
                     }
-                }
-                doWork();
-            `], { type: "text/javascript" })));
-    
-            worker.onmessage = function(event) {
-                document.getElementById("progressBar").value = event.data;
+                    doWork();
+                `], { type: "text/javascript" })));
+        
+                worker.onmessage = function(event) {
+                    document.getElementById("progressBar").value = event.data;
+                };
+            }
+        </script>
+
+        <h2>SSE - WebSocket Valós idejű színváltozás</h2>
+        <div id="colorBox" style="width: 200px; height: 200px; background-color: lightgray;"></div>
+
+        <script>
+            let socket = new WebSocket("ws://localhost:5500");
+
+            socket.onmessage = function(event) {
+                document.getElementById("colorBox").style.backgroundColor = event.data;
             };
-        }
-    </script>
+        </script>
 
-    <h2>SSE - WebSocket Valós idejű színváltozás</h2>
-    <div id="colorBox" style="width: 200px; height: 200px; background-color: lightgray;"></div>
+        <h2>Geolocation API</h2>
+        <button onclick="getLocation()">Helymeghatározás</button>
+        <p id="locationOutput"></p>
 
-    <script>
-        let socket = new WebSocket("ws://localhost:5500");
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(async function(position) {
+                        let lat = position.coords.latitude;
+                        let lon = position.coords.longitude;
 
-        socket.onmessage = function(event) {
-            document.getElementById("colorBox").style.backgroundColor = event.data;
-        };
-    </script>
+                        // Küldjük a koordinátákat egy fordított geokódoló API-nak
+                        let response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                        let data = await response.json();
 
-    <h2>Geolocation API</h2>
-    <button onclick="getLocation()">Helymeghatározás</button>
-    <p id="locationOutput"></p>
-
-    <script>
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(async function(position) {
-                    let lat = position.coords.latitude;
-                    let lon = position.coords.longitude;
-
-                    // Küldjük a koordinátákat egy fordított geokódoló API-nak
-                    let response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
-                    let data = await response.json();
-
-                    document.getElementById("locationOutput").innerText =
-                        `Város: ${data.address.city || data.address.town || data.address.village}`;
-                });
-            } else {
-                alert("A böngésződ nem támogatja a Geolocation API-t.");
-            }
-        }
-    </script>
-
-    <h2>Drag and Drop</h2>
-    <div id="dragBox" draggable="true" ondragstart="drag(event)">Húzz engem</div>
-    <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">Dobj le ide</div>
-
-
-    <script>
-        function allowDrop(event) {
-            event.preventDefault();
-        }
-
-        function drag(event) {
-            event.dataTransfer.setData("text", event.target.id);
-        }
-
-        function drop(event) {
-            event.preventDefault();
-            let data = event.dataTransfer.getData("text");
-            let draggedElement = document.getElementById(data);
-            
-            draggedElement.style.position = "absolute";
-            draggedElement.style.left = event.clientX - 50 + "px";
-            draggedElement.style.top = event.clientY - 50 + "px";
-
-            draggedElement.draggable = true;
-        }
-    </script>
-
-    <h2>Canvas API</h2>
-    <canvas id="canvas"></canvas>
-
-    <script>
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let circles = [];
-
-        function randomColor() {
-            return `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
-        }
-
-        function createCircles() {
-            for (let i = 0; i < 20; i++) {
-                circles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 50 + 10,
-                    dx: (Math.random() - 0.5) * 4,
-                    dy: (Math.random() - 0.5) * 4,
-                    color: randomColor()
-                });
-            }
-        }
-
-        function drawCircles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            circles.forEach(circle => {
-                ctx.beginPath();
-                ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = circle.color;
-                ctx.fill();
-                ctx.closePath();
-
-                circle.x += circle.dx;
-                circle.y += circle.dy;
-
-                if (circle.x + circle.radius > canvas.width || circle.x - circle.radius < 0) {
-                    circle.dx *= -1;
-                    circle.color = randomColor();
+                        document.getElementById("locationOutput").innerText =
+                            `Város: ${data.address.city || data.address.town || data.address.village}`;
+                    });
+                } else {
+                    alert("A böngésződ nem támogatja a Geolocation API-t.");
                 }
-                if (circle.y + circle.radius > canvas.height || circle.y - circle.radius < 0) {
-                    circle.dy *= -1;
-                    circle.color = randomColor();
+            }
+        </script>
+
+        <h2>Drag and Drop</h2>
+        <div id="dragBox" draggable="true" ondragstart="drag(event)">Húzz engem</div>
+        <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">Dobj le ide</div>
+
+
+        <script>
+            function allowDrop(event) {
+                event.preventDefault();
+            }
+
+            function drag(event) {
+                event.dataTransfer.setData("text", event.target.id);
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                let data = event.dataTransfer.getData("text");
+                let draggedElement = document.getElementById(data);
+                
+                draggedElement.style.position = "absolute";
+                draggedElement.style.left = event.clientX - 50 + "px";
+                draggedElement.style.top = event.clientY - 50 + "px";
+
+                draggedElement.draggable = true;
+            }
+        </script>
+
+        <h2>Canvas API</h2>
+        <canvas id="canvas"></canvas>
+
+        <script>
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let circles = [];
+
+            function randomColor() {
+                return `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+            }
+
+            function createCircles() {
+                for (let i = 0; i < 20; i++) {
+                    circles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 50 + 10,
+                        dx: (Math.random() - 0.5) * 4,
+                        dy: (Math.random() - 0.5) * 4,
+                        color: randomColor()
+                    });
                 }
-            });
+            }
 
-            requestAnimationFrame(drawCircles);
-        }
+            function drawCircles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                circles.forEach(circle => {
+                    ctx.beginPath();
+                    ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = circle.color;
+                    ctx.fill();
+                    ctx.closePath();
 
-        createCircles();
-        drawCircles();
-    </script>
+                    circle.x += circle.dx;
+                    circle.y += circle.dy;
 
-    <h2>SVG</h2>
-    <svg width="300" height="300" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="blue">
-            <animate attributeName="r" from="30" to="40" dur="1s" repeatCount="indefinite" />
-            <animate attributeName="fill" values="blue;green;red;purple;yellow" dur="4s" repeatCount="indefinite" />
-        </circle>
+                    if (circle.x + circle.radius > canvas.width || circle.x - circle.radius < 0) {
+                        circle.dx *= -1;
+                        circle.color = randomColor();
+                    }
+                    if (circle.y + circle.radius > canvas.height || circle.y - circle.radius < 0) {
+                        circle.dy *= -1;
+                        circle.color = randomColor();
+                    }
+                });
 
-        <circle cx="50" cy="10" r="5" fill="white">
-            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2s" repeatCount="indefinite" />
-        </circle>
-    </svg>
+                requestAnimationFrame(drawCircles);
+            }
+
+            createCircles();
+            drawCircles();
+        </script>
+
+        <h2>SVG</h2>
+        <svg width="300" height="300" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="blue">
+                <animate attributeName="r" from="30" to="40" dur="1s" repeatCount="indefinite" />
+                <animate attributeName="fill" values="blue;green;red;purple;yellow" dur="4s" repeatCount="indefinite" />
+            </circle>
+
+            <circle cx="50" cy="10" r="5" fill="white">
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2s" repeatCount="indefinite" />
+            </circle>
+        </svg>
+    </section>
+    <footer>Papp Zoltán E5IZMS</footer>
+    <footer>Halász Izabella Mária D97E6X</footer>
 </body>
 </html>

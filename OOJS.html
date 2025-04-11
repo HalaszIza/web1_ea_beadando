@@ -22,62 +22,65 @@
             <li><a href="contact.html">Kapcsolat</a></li>
         </ul>
     </nav>
-    <h2>Objektumorientált Film Adatbázis</h2>
-    <div id="filmList"></div>
+    <section>
+        <div id="filmList"></div>
 
-    <script>
-        class Film {
-            constructor(title, year, revenue) {
-                this.title = title;
-                this.year = year;
-                this.revenue = revenue;
+        <script>
+            class Film {
+                constructor(title, year, revenue) {
+                    this.title = title;
+                    this.year = year;
+                    this.revenue = revenue;
+                }
+
+                display() {
+                    let filmDiv = document.createElement('div');
+                    filmDiv.className = 'film-container';
+                    filmDiv.innerHTML = `<strong>${this.title}</strong> (${this.year}) - Bevétel: ${this.revenue}M USD`;
+                    document.body.appendChild(filmDiv);
+                }
             }
 
-            display() {
-                let filmDiv = document.createElement('div');
-                filmDiv.className = 'film-container';
-                filmDiv.innerHTML = `<strong>${this.title}</strong> (${this.year}) - Bevétel: ${this.revenue}M USD`;
-                document.body.appendChild(filmDiv);
-            }
-        }
+            class SciFiFilm extends Film {
+                constructor(title, year, revenue, tech) {
+                    super(title, year, revenue);
+                    this.tech = tech;
+                }
 
-        class SciFiFilm extends Film {
-            constructor(title, year, revenue, tech) {
-                super(title, year, revenue);
-                this.tech = tech;
-            }
-
-            display() {
-                let filmDiv = document.createElement('div');
-                filmDiv.className = 'film-container';
-                filmDiv.innerHTML = `<strong>${this.title}</strong> (${this.year}) - Bevétel: ${this.revenue}M USD - Technológia: ${this.tech}`;
-                document.body.appendChild(filmDiv);
-            }
-        }
-
-        class ThrillerFilm extends Film {
-            constructor(title, year, revenue, suspenseLevel) {
-                super(title, year, revenue);
-                this.suspenseLevel = suspenseLevel;
+                display() {
+                    let filmDiv = document.createElement('div');
+                    filmDiv.className = 'film-container';
+                    filmDiv.innerHTML = `<strong>${this.title}</strong> (${this.year}) - Bevétel: ${this.revenue}M USD - Technológia: ${this.tech}`;
+                    document.body.appendChild(filmDiv);
+                }
             }
 
-            display() {
-                let filmDiv = document.createElement('div');
-                filmDiv.className = 'film-container';
-                filmDiv.innerHTML = `<strong>${this.title}</strong> (${this.year}) - Bevétel: ${this.revenue}M USD - Feszültség szint: ${this.suspenseLevel}`;
-                document.body.appendChild(filmDiv);
+            class ThrillerFilm extends Film {
+                constructor(title, year, revenue, suspenseLevel) {
+                    super(title, year, revenue);
+                    this.suspenseLevel = suspenseLevel;
+                }
+
+                display() {
+                    let filmDiv = document.createElement('div');
+                    filmDiv.className = 'film-container';
+                    filmDiv.innerHTML = `<strong>${this.title}</strong> (${this.year}) - Bevétel: ${this.revenue}M USD - Feszültség szint: ${this.suspenseLevel}`;
+                    document.body.appendChild(filmDiv);
+                }
             }
-        }
 
-        const films = [
-            new SciFiFilm("Interstellar", 2014, 701, "Űrutazás"),
-            new SciFiFilm("Inception", 2010, 837, "Álomtechnológia"),
-            new ThrillerFilm("Shutter Island", 2010, 294, "Magas"),
-            new SciFiFilm("Tenet", 2020, 365, "Idő-inverzió"),
-            new ThrillerFilm("Silence of the Lambs", 1991, 272, "Extrém")
-        ];
+            const films = [
+                new SciFiFilm("Interstellar", 2014, 701, "Űrutazás"),
+                new SciFiFilm("Inception", 2010, 837, "Álomtechnológia"),
+                new ThrillerFilm("Shutter Island", 2010, 294, "Magas"),
+                new SciFiFilm("Tenet", 2020, 365, "Idő-inverzió"),
+                new ThrillerFilm("Silence of the Lambs", 1991, 272, "Extrém")
+            ];
 
-        films.forEach(film => film.display());
-    </script>
+            films.forEach(film => film.display());
+        </script>
+    </section>
+    <footer>Papp Zoltán E5IZMS</footer>
+    <footer>Halász Izabella Mária D97E6X</footer>
 </body>
 </html>
