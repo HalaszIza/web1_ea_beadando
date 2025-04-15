@@ -71,7 +71,8 @@ const Game = () => {
                 <button onClick={resetGame}>Új játék</button>
             </div>
             <div className="footer">
-                Készítették: Halász Izabella Mária - D97E6X
+                Halász Izabella Mária - D97E6X
+                Papp Zoltán E5IZMS
             </div>
         </div>
     );
