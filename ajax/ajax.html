@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX API App</title>
+    <script src="ajax.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Főoldal</a></li>
+            <li><a href="../about.html">Rólunk</a></li>
+            <li><a href="../filmdata.html">Filmek</a></li>
+            <li><a href="../ChartJS.html">Film bevételek</a></li>
+            <li><a href="../OOJS.html">OOJS Adatbázis</a></li>
+            <li><a href="../HTML5.html">HTML5</a></li>
+            <li><a href="ajax.html" class="active">Ajax API</a></li>
+            <li><a href="../contact.html">Kapcsolat</a></li>
+        </ul>
+    </nav>
+    <aside>
+        <h1>API Adatok</h1>
+    </aside>
+    <section>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Code</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+        <form id="createForm">
+            <h2>Create Record</h2>
+            <input type="text" id="name" placeholder="Name" maxlength="30" required>
+            <input type="number" id="height" placeholder="Height" required>
+            <input type="number" id="weight" placeholder="Weight" required>
+            <button type="submit">Create</button>
+        </form>
+        
+        <form id="updateForm">
+            <h2>Update Record</h2>
+            <label for="updateId">Record ID:</label>
+            <input type="number" id="updateId" placeholder="Enter ID" required>
+            
+            <button type="button" id="getDataForId">Get Data for ID</button>
+            <br><br>
+            <label for="updateName">Name:</label>
+            <input type="text" id="updateName" placeholder="Name" maxlength="30" required>
+            
+            <label for="updateHeight">Height:</label>
+            <input type="number" id="updateHeight" placeholder="Height" required>
+            
+            <label for="updateWeight">Weight:</label>
+            <input type="number" id="updateWeight" placeholder="Weight" required>
+            
+            <button type="submit">Update</button>
+        </form>
+        <form id="deleteForm">
+            <h2>Delete Record</h2>
+            <label for="deleteId">Record ID:</label>
+            <input type="number" id="deleteId" placeholder="Enter ID" required>
+            
+            <button type="submit">Delete</button>
+        </form>
+
+    </section>
+
+    <footer>Papp Zoltán E5IZMS</footer>
+    <footer>Halász Izabella Mária D97E6X</footer>
+        
+</body>
+</html>
